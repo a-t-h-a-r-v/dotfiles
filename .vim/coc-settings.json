@@ -1,0 +1,5 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": ["javascript", "typescript", "html", "css", "json"],
+  "coc.source.file.enable": true,
+  "coc.source.buffer.enable": true
+}
