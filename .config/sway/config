@@ -1,0 +1,4 @@
+include ~/.config/sway/config.d/bindings.conf
+include ~/.config/sway/config.d/resize.conf
+include ~/.config/sway/config.d/windows.conf
+include ~/.config/sway/config.d/*.conf
