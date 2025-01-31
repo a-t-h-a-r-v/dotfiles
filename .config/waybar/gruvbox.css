@@ -1,0 +1,88 @@
+* {
+  border: none;
+  border-radius: 0;
+  font-family: "Source Sans Pro", "FontAwesome 6 Free";
+  font-size: 15px;
+  box-shadow: none;
+  text-shadow: none;
+  transition-duration: 0s;
+}
+
+window#waybar {
+  color: #ebdbb2; /* Gruvbox FG */
+  background-color: rgba(40, 40, 40, 0.8); /* Gruvbox Dark BG */
+  border-bottom: 2px solid #d79921; /* Gruvbox Yellow */
+}
+
+window#waybar.solo {
+  color: #ebdbb2;
+}
+
+#workspaces {
+  margin: 0 5px;
+}
+
+#custom-scratchpad {
+  margin: 0px 5px;
+  padding: 0px 5px;
+}
+
+#workspaces button {
+  padding: 0 5px;
+  color: #d79921; /* Gruvbox Yellow */
+}
+
+#workspaces button.focused {
+  color: #b8bb26; /* Gruvbox Green */
+}
+
+#workspaces button.visible {
+  color: #b8bb26; /* Gruvbox Green */
+}
+
+#workspaces button.urgent {
+  color: #fb4934; /* Gruvbox Red */
+}
+
+#mode,
+#battery,
+#cpu,
+#memory,
+#network,
+#bluetooth,
+#pulseaudio,
+#idle_inhibitor,
+#temperature,
+#custom-layout,
+#backlight {
+  margin: 0px 6px 0px 10px;
+  /*    min-width: 30px;*/
+}
+
+#clock {
+  margin: 0px 6px 0px 10px;
+}
+
+#battery.warning {
+  color: #fabd2f; /* Gruvbox Bright Yellow */
+}
+
+#battery.critical {
+  color: #fb4934; /* Gruvbox Red */
+}
+
+#battery.charging {
+  color: #928374; /* Gruvbox Gray */
+}
+
+#bluetooth.disabled {
+  color: #928374; /* Gruvbox Gray */
+}
+
+#bluetooth.off {
+  color: #928374; /* Gruvbox Gray */
+}
+
+#bluetooth.connected {
+  color: #b8bb26; /* Gruvbox Green */
+}
