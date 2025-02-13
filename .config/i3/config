@@ -59,6 +59,7 @@ bindsym $mod+p exec $wm_password_manager
 
 # Run a window compositor (for effects like transparency or full VSync)
 exec_always --no-startup-id $wm_setting_app_compositor
+exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --rate 60
 exec --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/wall1.jpg
 exec --no-startup-id setxkbmap -option caps:swapescape
 
