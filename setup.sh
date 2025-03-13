@@ -30,6 +30,22 @@ ln -sf "$DOTFILES_DIR/.vimrc" "$VIMRC"
 
 echo "Installing vim-plug..."
 curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim || {
+    echo "Failed to download vim-plug."
+    exit 1
+}
+
+echo "Installing Packer..."
+PACKER_DIR="$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim"
+
+if [ -d "$PACKER_DIR" ] && [ "$(ls -A "$PACKER_DIR")" ]; then
+    echo "Packer is already installed or the directory is not empty. Skipping..."
+else
+    git clone --depth 1 https://github.com/wbthomason/packer.nvim "$PACKER_DIR" || {
+        echo "Failed to clone Packer."
+        exit 1
+    }
+    echo "Packer installed successfully."
+fi
 
 echo "Setup Complete."
