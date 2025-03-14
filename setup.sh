@@ -3,6 +3,7 @@
 DOTFILES_DIR="$HOME/dotfiles"
 VIM_BOILERPLATES="$HOME/.vim/boilerplates"
 NVIM_BOILERPLATES="$HOME/.config/nvim/boilerplates"
+NVIM_SCRIPTS="$HOME/.config/nvim/scripts"
 NVIM_INIT="$HOME/.config/nvim/init.lua"
 VIMRC="$HOME/.vimrc"
 
@@ -23,7 +24,8 @@ mkdir -p "$HOME/.vim"
 mkdir -p "$HOME/.config/nvim"
 
 ln -sfn "$DOTFILES_DIR/.vim/boilerplates" "$VIM_BOILERPLATES"
-ln -sfn "$DOTFILES_DIR/.vim/boilerplates" "$NVIM_BOILERPLATES"
+ln -sfn "$DOTFILES_DIR/.config/nvim/boilerplates" "$NVIM_BOILERPLATES"
+ln -sfn "$DOTFILES_DIR/.config/nvim/scripts" "$NVIM_SCRIPTS"
 
 ln -sf "$DOTFILES_DIR/.config/nvim/init.lua" "$NVIM_INIT"
 ln -sf "$DOTFILES_DIR/.vimrc" "$VIMRC"
