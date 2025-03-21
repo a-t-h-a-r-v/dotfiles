@@ -40,9 +40,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-" LaTeX Support
-Plug 'lervag/vimtex'
-
 " Fuzzy File Search
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -113,18 +110,3 @@ function! SearchSelectionInBrowser()
 endfunction
 
 vnoremap <Leader>gs :call SearchSelectionInBrowser()<CR>
-
-" VimTeX Configuration
-let g:vimtex_view_method = 'zathura'
-let g:vimtex_compiler_method = 'latexmk'
-let g:vimtex_compiler_latexmk = {
-    \ 'build_dir': 'build',
-    \ 'callback': 1,
-    \ 'continuous': 1,
-    \ 'executable': 'latexmk',
-    \ 'options': [
-    \     '-pdf',
-    \     '-interaction=nonstopmode',
-    \     '-synctex=1'
-    \ ]
-    \ }

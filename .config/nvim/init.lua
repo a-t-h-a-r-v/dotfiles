@@ -26,10 +26,19 @@ require('packer').startup(function()
         'coc-tsserver', 'coc-html', 'coc-css', 'coc-java', 'coc-pyright', 'coc-clangd', 'coc-sh'
     }
     
-    -- Autopairs
-    use {'windwp/nvim-autopairs', config = function()
-        require('nvim-autopairs').setup {}
-    end}
+    use {
+        'windwp/nvim-autopairs',
+        config = function()
+            require('nvim-autopairs').setup {
+                -- Add your custom settings here if needed
+            }
+
+            -- If using nvim-cmp, integrate autopairs with it
+            local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+            local cmp = require('cmp')
+            cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+        end
+    }
     
     -- Emmet
     use 'mattn/emmet-vim'
@@ -40,9 +49,6 @@ require('packer').startup(function()
     -- Status Line
     use 'vim-airline/vim-airline'
     use 'vim-airline/vim-airline-themes'
-    
-    -- LaTeX Support
-    use 'lervag/vimtex'
     
     -- Fuzzy File Search
     use {'junegunn/fzf', run = function() vim.fn['fzf#install']() end}
@@ -112,18 +118,3 @@ function SearchSelectionInBrowser()
     vim.fn.setreg('"', old_reg)
 end
 vim.api.nvim_set_keymap('v', '<Leader>gs', ':lua SearchSelectionInBrowser()<CR>', {noremap = true})
-
--- VimTeX Configuration
-vim.g.vimtex_view_method = 'zathura'
-vim.g.vimtex_compiler_method = 'latexmk'
-vim.g.vimtex_compiler_latexmk = {
-    build_dir = 'build',
-    callback = 1,
-    continuous = 1,
-    executable = 'latexmk',
-    options = {
-        '-pdf',
-        '-interaction=nonstopmode',
-        '-synctex=1'
-    }
-}
