@@ -3,6 +3,12 @@ vim.cmd [[packadd packer.nvim]]
 
 -- Set tab to 2 spaces
 vim.opt.expandtab = true
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "make",
+    callback = function()
+        vim.opt_local.expandtab = false
+    end,
+})
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
@@ -154,7 +160,7 @@ vim.api.nvim_create_autocmd('BufNewFile', {
 
 -- Compile C/C++ files with Make or fallback to gcc/clang
 vim.api.nvim_set_keymap('n', '<leader>cc', 
-":w<CR>:lua if vim.fn.filereadable('Makefile') == 1 then vim.cmd('!make') else vim.cmd('!gcc % -o %< && ./%<') end<CR>", 
+":w<CR>:lua if vim.fn.filereadable('Makefile') == 1 then vim.cmd('!make && ./$(ls -t | head -n1)') else vim.cmd('!gcc % -o %< && ./%<') end<CR>", 
 { noremap = true, silent = true })
 
 -- Setup lualine with Catppuccin theme
