@@ -158,10 +158,32 @@ vim.api.nvim_create_autocmd('BufNewFile', {
   callback = insert_boilerplate
 })
 
--- Compile C/C++ files with Make or fallback to gcc/clang
-vim.api.nvim_set_keymap('n', '<leader>cc', 
-":w<CR>:lua if vim.fn.filereadable('Makefile') == 1 then vim.cmd('!make && ./$(ls -t | head -n1)') else vim.cmd('!gcc % -o %< && ./%<') end<CR>", 
-{ noremap = true, silent = true })
+-- Define a function to handle compilation based on filetype
+vim.api.nvim_set_keymap('n', '<leader>cc', [[:lua CompileAndRun()<CR>]], { noremap = true, silent = true })
+
+function CompileAndRun()
+    local filetype = vim.bo.filetype
+
+    if filetype == 'c' then
+        -- Compile and run C
+        vim.cmd('w!')  -- Save file
+        vim.cmd('!gcc % -o %< && ./%<')  -- Compile and run C code
+    elseif filetype == 'cpp' then
+        -- Compile and run C++
+        vim.cmd('w!')  -- Save file
+        vim.cmd('!g++ % -o %< && ./%<')  -- Compile and run C++ code
+    elseif filetype == 'python' then
+        -- Execute Python
+        vim.cmd('w!')  -- Save file
+        vim.cmd('!python3 %')  -- Run Python code
+    elseif filetype == 'tex' then
+        -- Compile and view LaTeX with zathura
+        vim.cmd('w!')  -- Save file
+        vim.cmd('!pdflatex % && zathura %:r.pdf')  -- Compile and open PDF with zathura
+    else
+        print("Unsupported file type for <leader>cc")
+    end
+end
 
 -- Setup lualine with Catppuccin theme
 require('lualine').setup({
